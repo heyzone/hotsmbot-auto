@@ -1,0 +1,39 @@
+name: Auto Renew Sillydev Server
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 1'
+
+jobs:
+  renew-job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 【【【 核心修改点: 移除 playwright-stealth 】】】
+      - name: Install Playwright and dependencies
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Run Server Renewal Script
+        env:
+          SILLYDEV_COOKIE: ${{ secrets.SILLYDEV_COOKIE }}
+          SILLYDEV_EMAIL: ${{ secrets.SILLYDEV_EMAIL }}
+          SILLYDEV_PASSWORD: ${{ secrets.SILLYDEV_PASSWORD }}
+        run: python -u main.py
+
+      - name: Upload debug artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-and-logs
+          path: "*.png"
