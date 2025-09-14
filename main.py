@@ -5,7 +5,7 @@ from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeo
 from datetime import datetime
 
 # --- 配置项 (保持不变) ---
-SERVER_URL = "https://panel.hostmybot.net/server/cadc7900"
+SERVER_URL = "https://panel.hostmybot.net/server/e5320ea4"
 LOGIN_URL = "https://panel.hostmybot.net/auth/login"
 COOKIE_NAME = "remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d"
 TASK_TIMEOUT_SECONDS = 300
@@ -147,7 +147,7 @@ def main():
 
         sillydev_cookie = os.environ.get('SILLYDEV_COOKIE')
         if sillydev_cookie:
-            context.add_cookies([{'name': COOKIE_NAME, 'value': sillydev_cookie, 'domain': '.panel.sillydev.co.uk','path': '/', 'expires': int(time.time()) + 3600 * 24 * 365, 'httpOnly': True, 'secure': True, 'sameSite': 'Lax'}])
+            context.add_cookies([{'name': COOKIE_NAME, 'value': sillydev_cookie, 'domain': '.panel.hostmybot.net','path': '/', 'expires': int(time.time()) + 3600 * 24 * 365, 'httpOnly': True, 'secure': True, 'sameSite': 'Lax'}])
 
         page = context.new_page()
         page.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
