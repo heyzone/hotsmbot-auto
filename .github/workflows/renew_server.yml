@@ -2,8 +2,8 @@ name: Auto Renew Sillydev Server
 
 on:
   workflow_dispatch:
-  #schedule:
-  #  - cron: '0 3 * * 1'
+  schedule:
+    - cron: '0 3 * * 1'
 
 jobs:
   renew-job:
