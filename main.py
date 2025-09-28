@@ -5,7 +5,7 @@ from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeo
 from datetime import datetime
 
 # --- 配置项 (保持不变) ---
-SERVER_URL = "https://panel.hostmybot.net/server/cadc7900"
+SERVER_URL = "https://panel.hostmybot.net/server/6b86b05a"
 LOGIN_URL = "https://panel.hostmybot.net/auth/login"
 COOKIE_NAME = "remember_web_59ba36addc2b2f9401580f014c7f58ea4e30989d"
 TASK_TIMEOUT_SECONDS = 300
